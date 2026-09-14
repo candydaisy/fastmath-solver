@@ -28,7 +28,7 @@ function rollRandom() {
   digitInputs.forEach((input) => {
     input.value = Math.floor(Math.random() * 10);
   });
-  document.getElementById('random-target').value = Math.floor(Math.random() * 900) + 100;
+  document.getElementById('random-target').value = Math.floor(Math.random() * 90) + 10;
 }
 document.getElementById('roll-btn').addEventListener('click', rollRandom);
 rollRandom();
