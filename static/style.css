@@ -247,3 +247,15 @@ input[type=number] {
 .result.is-error .result__value {
   color: var(--error);
 }
+
+.footer {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.footer a {
+  margin-left: 12px;
+}
