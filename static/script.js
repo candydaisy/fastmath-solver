@@ -53,6 +53,25 @@ document.getElementById('remove-number-btn').addEventListener('click', () => {
 });
 
 // ---- solving ----
+// Show the formula as LaTeX (via KaTeX); fall back to the plain expression.
+function renderExpr(data) {
+  resultExpr.classList.remove('is-latex');
+  if (data.latex && window.katex) {
+    try {
+      katex.render(`${data.latex} = ${data.value}`, resultExpr, {
+        displayMode: true,
+        throwOnError: true,
+      });
+      resultExpr.classList.add('is-latex');
+      resultExpr.title = data.expr;
+      return;
+    } catch (err) {
+      // fall through to plain text
+    }
+  }
+  resultExpr.textContent = data.expr;
+}
+
 function collectNumbers(container) {
   return Array.from(container.querySelectorAll('.digit-input'))
     .map((input) => input.value)
@@ -81,7 +100,7 @@ function showResult(data) {
   }
 
   resultValue.textContent = data.value;
-  resultExpr.textContent = data.expr;
+  renderExpr(data);
   resultNote.textContent = data.exact
     ? 'Exact match.'
     : `Off by ${data.diff}.`;
