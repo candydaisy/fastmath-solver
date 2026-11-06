@@ -10,6 +10,7 @@ Then open http://localhost:5000 in a browser.
 from flask import Flask, render_template, request, jsonify
 
 from solver import solve_numbers
+from latex import expr_to_latex
 
 app = Flask(__name__)
 
@@ -48,6 +49,7 @@ def api_solve():
         found=True,
         value=value,
         expr=expr,
+        latex=expr_to_latex(expr),
         diff=diff,
         exact=(diff == 0),
     )
